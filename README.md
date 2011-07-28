@@ -11,6 +11,7 @@ See:  http://en.wikipedia.org/wiki/Representational_State_Transfer#Central_princ
 
 ```ruby
 class User < ActiveRecord::Base 
+	representation :default,	:name, :age
   representation :public,   :name, :calculated_age
   representation :internal, :name, :ssn, :age
 
@@ -19,11 +20,31 @@ class User < ActiveRecord::Base
   end
 end
 
+User.first.representation.inspect
+=> #<User name: "Tweedle Dum", age: 42>
+
 User.first.representation(:public).inspect
 => #<User name: "Tweedle Dum", calculated_age: 84>
 
 User.first.representation(:internal).inspect
 => #<User name: "Tweedle Dum", age: 42, ssn: "555-55-5555">
+````
+
+Nested representations are also supported. The nested objects must have a 
+representation defined with the same name as the parent object.
+
+```ruby
+class User < ActiveRecord::Base
+	representation :mailto, :name, :address
+	has_one :address
+end
+
+class Address < ActiveRecord::Base
+	representation :mailto, :street, :number
+end
+
+User.first.representation(:mailto).to_json
+=> {"name" : "Tweedle Dum", "address" : {"number" : "1234", "street" : "SomeStreet"}}
 ````
 
 ## Contributing to representation

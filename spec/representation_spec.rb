@@ -45,6 +45,15 @@ describe "Representation" do
     it "should raise a Representation::UnknownRepresentationError when referencing an unknown representation" do
       expect{ User.new.representation(:invalid) }.to raise_error Representation::UnknownRepresentationError
     end
+    
+    it "should return an object with only the attributes identified by the representation definition" do
+      User.representation :public, :name, :calculated_age
+      user = User.new(:name => 'Tweedle Dum', :age => 42)
+      public_user = user.representation(:public)
+      public_user.name.should == 'Tweedle Dum'
+      public_user.calculated_age.should == 84
+      lambda { public_user.ssn }.should raise_error(NoMethodError)
+    end
   end
   
   describe "the representation object" do
@@ -54,6 +63,15 @@ describe "Representation" do
     
     it "should be inspectable" do
       representation.inspect.should == "#<#{User} name: \"Tweedle Dum\", calculated_age: 84>"
+    end
+    
+    it "should not modify the resource off of which the representation is based when the representation is modified" do
+      representation.name = 'Tweedle Dee'
+      user.name.should == 'Tweedle Dum'
+    end
+    
+    it "should be serializable as a hash" do
+      representation.serializable_hash.should == {"calculated_age" => 84, "name" => "Tweedle Dum"}
     end
     
     it "should be serializable to json" do
