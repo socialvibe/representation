@@ -49,3 +49,6 @@ pkg
 
 # sqlite
 spec/support/*.sqlite3
+
+# for gem development is it recommended to ignore Gemfile.lock
+Gemfile.lock
