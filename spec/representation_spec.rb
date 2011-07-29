@@ -105,10 +105,5 @@ describe "Representation" do
       user.representation(:professional).to_json.should == \
         "{\"name\":\"Tweedle Dum\",\"titles\":[{\"description\":\"Peon\"},{\"description\":\"Chief officer of awesome\"}]}"
     end
-    
-    it "should have a default representation" do
-      User.representation :default, :name
-      user.representation.to_json.should == "{\"name\":\"Tweedle Dum\"}"
-    end
   end
 end

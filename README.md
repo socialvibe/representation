@@ -10,8 +10,7 @@ See:  http://en.wikipedia.org/wiki/Representational_State_Transfer#Central_princ
 ## Usage
 
 ```ruby
-class User < ActiveRecord::Base 
-	representation :default,	:name, :age
+class User < ActiveRecord::Base
   representation :public,   :name, :calculated_age
   representation :internal, :name, :ssn, :age
 
@@ -19,9 +18,6 @@ class User < ActiveRecord::Base
     age * 2
   end
 end
-
-User.first.representation.inspect
-=> #<User name: "Tweedle Dum", age: 42>
 
 User.first.representation(:public).inspect
 => #<User name: "Tweedle Dum", calculated_age: 84>

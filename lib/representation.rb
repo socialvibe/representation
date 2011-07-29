@@ -30,7 +30,7 @@ module Representation
   end
 
   module InstanceMethods
-    def representation(name = :default)
+    def representation(name)
       attributes_and_method_names = self.class.values_for_representation(name)
       represented_attributes = attributes_and_method_names.inject({}) do |attributes, attribute|
         value = send(attribute)
