@@ -9,6 +9,7 @@ module Representation
 
     def self.inherited(base)
       base.representations = {}
+      super
     end
   end
 
