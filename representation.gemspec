@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{representation}
-  s.version = "0.1.3"
+  s.name = "representation"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Chris Johnson"]
-  s.date = %q{2012-01-04}
-  s.description = %q{Create different, named representations of a resource for cleaner state representation.}
-  s.email = %q{findchris@gmail.com}
+  s.authors = ["Chris Johnson", "Chris Baker"]
+  s.date = "2012-06-19"
+  s.description = "Create different, named representations of a resource for cleaner state representation."
+  s.email = "chris@socialvibe.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -34,11 +34,11 @@ Gem::Specification.new do |s|
     "spec/support/schema.rb",
     "watchr.rb"
   ]
-  s.homepage = %q{http://github.com/findchris/representation}
+  s.homepage = "http://github.com/socialvibe/representation"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.0}
-  s.summary = %q{Model logical groups of attributes as different object representations.}
+  s.rubygems_version = "1.8.24"
+  s.summary = "Model logical groups of attributes as different object representations."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
