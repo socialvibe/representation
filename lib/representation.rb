@@ -7,9 +7,12 @@ module Representation
     class_attribute :representations
     self.representations = {}
 
-    def self.inherited(base)
-      base.representations = {}
-      super
+    class << self
+      def inherited_with_representation(base) #:nodoc:
+        inherited_without_representation base
+        base.representations = {}
+      end
+      alias_method_chain :inherited, :representation
     end
   end
 
